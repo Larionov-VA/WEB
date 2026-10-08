@@ -1,0 +1,44 @@
+body {
+    margin: 0;
+    font-family: Arial, sans-serif;
+    background: black;
+    color: white;
+}
+
+header {
+    padding: 16px;
+    text-align: center;
+    font-size: 20px;
+}
+
+.center {
+    text-align: center;
+    margin: 100px auto;
+}
+
+input, button {
+    font-size: 18px;
+    padding: 8px 12px;
+    margin: 8px;
+}
+
+.game-wrap {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    align-items: flex-start;
+}
+
+canvas {
+    border: 2px solid white;
+}
+
+table {
+    margin: 20px auto;
+    border-collapse: collapse;
+}
+
+td, th {
+    border: 1px solid white;
+    padding: 8px 16px;
+}

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <title>Тетрис</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header>
+        Игрок: <span id="playerName">Игрок</span>
+        | Очки: <span id="score">0</span>
+        | Уровень: <span id="level">0</span>
+    </header>
+
+    <main class="game-wrap">
+        <canvas id="playfield"></canvas>
+
+        <div class="nextFigure">
+            <p>Следующая фигура:</p>
+            <canvas id="next" width="120" height="120"></canvas>
+        </div>
+    </main>
+
+    <script src="js/game.js"></script>
+</body>
+</html>
