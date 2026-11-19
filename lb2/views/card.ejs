@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Карточка книги</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="wrapper">
+    <div class="topbar">
+      <h1><i class="fa-solid fa-book"></i> Карточка книги</h1>
+      <a class="btn btn-grey" href="/"><i class="fa-solid fa-arrow-left"></i> К списку</a>
+    </div>
+
+    <!-- редактирование автор/название/год -->
+    <form class="edit-form" onsubmit="return false;">
+      <label>Название
+        <input type="text" id="f-title" value="<%= book.title %>">
+      </label>
+      <label>Автор
+        <input type="text" id="f-author" value="<%= book.author %>">
+      </label>
+      <label>Год выпуска
+        <input type="number" id="f-year" value="<%= book.year || '' %>">
+      </label>
+      <button class="btn btn-blue" onclick="saveChanges(<%= book.id %>)">
+        <i class="fa-solid fa-floppy-disk"></i> Сохранить изменения
+      </button>
+    </form>
+
+    <!-- в библиотеке ли книга, кто взял и когда вернуть -->
+    <% if (book.available) { %>
+      <div class="state-box state-free">
+        <h3><i class="fa-solid fa-house"></i> Книга в библиотеке</h3>
+        <button class="btn btn-green" onclick="showIssueDialog()">
+          <i class="fa-solid fa-hand-holding"></i> Выдать читателю
+        </button>
+      </div>
+    <% } else { %>
+      <div class="state-box state-busy">
+        <h3><i class="fa-solid fa-user"></i> Книга на руках</h3>
+        <p>Читатель: <strong><%= book.borrower %></strong></p>
+        <p>Вернуть до: <strong><%= book.dueDate %></strong></p>
+        <button class="btn btn-green" onclick="giveBack(<%= book.id %>)">
+          <i class="fa-solid fa-rotate-left"></i> Вернуть в библиотеку
+        </button>
+      </div>
+    <% } %>
+
+    <!-- данные читателя вводятся во всплывающем модальном окне <dialog> -->
+    <dialog id="issue-dialog">
+      <h3>Выдача книги</h3>
+      <input type="text" id="f-borrower" placeholder="Имя читателя">
+      <input type="date" id="f-duedate">
+      <div class="dialog-buttons">
+        <button class="btn btn-green" onclick="issueBook(<%= book.id %>)">Выдать</button>
+        <button class="btn btn-grey" onclick="hideIssueDialog()">Отмена</button>
+      </div>
+    </dialog>
+  </main>
+
+  <script src="/card.js"></script>
+</body>
+</html>

@@ -1,0 +1,47 @@
+[
+  {
+    "id": 1,
+    "title": "Практическое руководство по современным Web-технологиям",
+    "author": "С.А. Беляев, М.С. Беляев",
+    "year": "2026",
+    "available": false,
+    "borrower": "Ларионов Владислав",
+    "dueDate": "2026-12-31"
+  },
+  {
+    "id": 2,
+    "title": "Властелин колец",
+    "author": "Толкин",
+    "year": "1955",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  },
+  {
+    "id": 3,
+    "title": "Дюна",
+    "author": "Герберт",
+    "year": "1965",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  },
+  {
+    "id": 4,
+    "title": "Академия",
+    "author": "Азимов",
+    "year": "1951",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  },
+  {
+    "id": 1795018119398,
+    "title": "Название",
+    "author": "Автор не указан",
+    "year": "2026",
+    "available": true,
+    "borrower": null,
+    "dueDate": null
+  }
+]

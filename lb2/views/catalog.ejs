@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Домашняя библиотека</title>
+  <!-- иконки элементов управления -- Font Awesome -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <main class="wrapper">
+    <div class="topbar">
+      <h1><i class="fa-solid fa-book-open"></i> Домашняя библиотека</h1>
+      <button class="btn btn-green" onclick="createBook()">
+        <i class="fa-solid fa-plus"></i> Добавить книгу
+      </button>
+    </div>
+
+    <!-- фильтрация идёт AJAX-запросами без перезагрузки страницы -->
+    <section class="filters">
+      <label class="filter-check">
+        <input type="checkbox" id="only-present">
+        <span>Только в наличии</span>
+      </label>
+      <label>
+        Вернуть не позже:
+        <input type="date" id="due-before">
+      </label>
+    </section>
+
+    <!-- cписок заполняется скриптом catalog.js через fetch к /api/books -->
+    <section id="shelf" class="shelf"></section>
+  </main>
+
+  <script src="/catalog.js"></script>
+</body>
+</html>

@@ -1,0 +1,13 @@
+{
+  "name": "home-library-app",
+  "version": "1.0.0",
+  "description": "Лабораторная работа 2: REST-приложение управления домашней библиотекой",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "dependencies": {
+    "ejs": "^3.1.9",
+    "express": "^4.18.2"
+  }
+}
