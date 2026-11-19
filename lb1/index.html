@@ -4,15 +4,28 @@
     <meta charset="UTF-8">
     <title>Тетрис - Вход</title>
     <link rel="stylesheet" href="css/style.css">
+    <script>
+        function read(source) {
+            source.value = localStorage.getItem('tetris.username') || '';
+        }
+        function store(source) {
+            localStorage.setItem('tetris.username', source.value);
+        }
+    </script>
 </head>
 <body>
     <main class="center">
         <h1>ТЕТРИС</h1>
         <form action="main.html" method="get">
             <label for="username">Имя пользователя:</label>
-            <input id="username" name="username" maxlength="15" required>
+            <input id="username" name="username" maxlength="15" required
+                   onchange="store(this)"
+                   oninput="store(this)">
             <button type="submit">Играть</button>
         </form>
     </main>
+    <script>
+        read(document.getElementById('username'));
+    </script>
 </body>
 </html>

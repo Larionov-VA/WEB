@@ -3,8 +3,8 @@ const ROWS = 20;
 const CELL = 30;
 
 const START_SPEED = 1000;
-const MIN_SPEED = 10;
-const LINES_PER_LEVEL = 1;
+const MIN_SPEED = 100;
+const LINES_PER_LEVEL = 2;
 
 const SHAPES = {
     I: [
@@ -66,8 +66,9 @@ canvas.width = COLS * CELL;
 canvas.height = ROWS * CELL;
 
 const url = new URLSearchParams(window.location.search);
-const playerName = url.get('username') || 'Игрок';
+const playerName = url.get('username') || localStorage.getItem('tetris.username') || 'Игрок';
 playerElement.textContent = playerName;
+localStorage.setItem('tetris.username', playerName);
 
 let board = createBoard();
 let currentType = randomType();
@@ -212,10 +213,10 @@ function clearLines() {
 
     for (let row = ROWS - 1; row >= 0; row--) {
         if (board[row].every(cell => cell !== 0)) {
-            board.splice(row, 1); // убраю заполненную
-            board.unshift(new Array(COLS).fill(0)); // добавляю сверху пустую
+            board.splice(row, 1);
+            board.unshift(new Array(COLS).fill(0));
             cleared++;
-            row++; // не пропускаю строку на месте удалённой
+            row++;
         }
     }
 
@@ -248,7 +249,7 @@ function drawCell(context, x, y, color, size = CELL) {
 
 function drawBoard() {
     ctx.clearRect(0, 0, canvas.width, canvas.height);
-    ctx.fillStyle = '#222222';
+    ctx.fillStyle = '#071229';
     ctx.fillRect(0, 0, canvas.width, canvas.height);
 
     for (let y = 0; y < ROWS; y++) {
@@ -285,10 +286,10 @@ function drawBoard() {
     }
 
     if (gameOver) {
-        ctx.fillStyle = 'rgba(0, 0, 0, 0.65)';
+        ctx.fillStyle = 'rgb(0, 0, 0)';
         ctx.fillRect(0, 0, canvas.width, canvas.height);
         ctx.fillStyle = 'white';
-        ctx.font = '32px arial';
+        ctx.font = '32px sans-serif';
         ctx.textAlign = 'center';
         ctx.fillText('GAME OVER', canvas.width / 2, canvas.height / 2);
     }
@@ -298,9 +299,8 @@ function drawNext() {
     nextCtx.clearRect(0, 0, nextCanvas.width, nextCanvas.height);
 
     const matrix = SHAPES[nextType];
-    const size = 30;
-    const width = matrix[0].length * size;
-    const height = matrix.length * size;
+    const width = matrix[0].length * CELL;
+    const height = matrix.length * CELL;
     const startX = Math.floor((nextCanvas.width - width) / 2);
     const startY = Math.floor((nextCanvas.height - height) / 2);
 
@@ -309,10 +309,10 @@ function drawNext() {
             if (matrix[row][col] !== 0) {
                 nextCtx.fillStyle = COLORS[nextType];
                 nextCtx.fillRect(
-                    startX + col * size + 1,
-                    startY + row * size + 1,
-                    size - 2,
-                    size - 2
+                    startX + col * CELL + 1,
+                    startY + row * CELL + 1,
+                    CELL - 2,
+                    CELL - 2
                 );
             }
         }
